@@ -1,8 +1,18 @@
 import React from "react";
 
+//Functional Controller Component to handle the Click-Rotate operations in the Ipod
 const Controller = (props) => {
-	const { menu, rotate, tap, isMenuVisible, addClass, removeClass, mouse } =
-		props;
+	const {
+		menu,
+		rotate,
+		tap,
+		isMenuVisible,
+		addClass,
+		removeClass,
+		mouse,
+		screen,
+		controllerRef,
+	} = props;
 	return (
 		<div
 			className="controller-container"
@@ -24,6 +34,7 @@ const Controller = (props) => {
 			<div
 				className="controller"
 				draggable="false"
+				ref={controllerRef}
 				style={styles.controller}
 				onClick={(e) => {
 					e.stopPropagation();
@@ -51,7 +62,7 @@ const Controller = (props) => {
 					style={{ height: 80, width: 80 }}
 					onClick={(e) => {
 						e.stopPropagation();
-						tap(menu);
+						tap(menu, screen);
 						return;
 					}}
 					onMouseDown={(e) => {
@@ -70,7 +81,7 @@ const Controller = (props) => {
 					draggable="false"
 					onClick={(e) => {
 						e.stopPropagation();
-						isMenuVisible(menu);
+						isMenuVisible(menu, screen);
 						return;
 					}}
 				>

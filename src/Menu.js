@@ -1,5 +1,6 @@
 import React from "react";
 
+//Functional Menu Component to Render the Various MENUs
 const Menu = (props) => {
 	const { menu } = props;
 	const {
@@ -13,6 +14,8 @@ const Menu = (props) => {
 	} = menu;
 	let show = "No Show Available";
 	let menuArray, musicArray, settingsArray, value;
+
+	//To check the Menu Visibility
 	if (menuVisible === "yes") {
 		show = "menu";
 		menuArray = options.map((object) => {
@@ -35,6 +38,7 @@ const Menu = (props) => {
 		value = val;
 	}
 
+	//Used in JSX Rendering
 	const divStyling = (item) => {
 		if (value === item) {
 			return { backgroundColor: "cyan" };
@@ -48,7 +52,9 @@ const Menu = (props) => {
 		return {};
 	};
 
+	//Menu to be Rendered
 	let RenderMenu = "Will be rendered in the future";
+	//Main Menu
 	if (show === "menu") {
 		RenderMenu = menuArray.map((item) => {
 			return (
@@ -62,7 +68,9 @@ const Menu = (props) => {
 				</div>
 			);
 		});
-	} else if (show === "music") {
+	}
+	//Music Menu
+	else if (show === "music") {
 		RenderMenu = musicArray.map((item) => (
 			<div className={item} style={divStyling(item)} id="options">
 				<p style={styles.text}>{item}</p>
@@ -73,7 +81,9 @@ const Menu = (props) => {
 				/>
 			</div>
 		));
-	} else if (show === "settings") {
+	}
+	//Settings Menu
+	else if (show === "settings") {
 		RenderMenu = settingsArray.map((item) => (
 			<div className={item} style={divStyling(item)} id="options">
 				<p style={styles.text}>{item.replace("-", " ")}</p>
@@ -85,7 +95,7 @@ const Menu = (props) => {
 			</div>
 		));
 	}
-
+	//Rendering the Menu as a whole
 	return (
 		<div
 			className={menuVisible === "no" ? "menu hide" : "menu"}

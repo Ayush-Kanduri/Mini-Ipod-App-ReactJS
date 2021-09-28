@@ -1,14 +1,15 @@
 import React from "react";
 import Menu from "./Menu";
 
+//Functional Display Component to Render the Display in Ipod
 const Display = (props) => {
 	const { menu, screen } = props;
-	const { wallpaper, index } = screen;
+	const { wallpaper, screenIndex } = screen;
 	return (
 		<div
 			className="display"
 			style={{
-				backgroundImage: "url(" + wallpaper[index] + ")",
+				backgroundImage: "url(" + wallpaper[screenIndex] + ")",
 				backgroundSize: "100% 100%",
 			}}
 		>
