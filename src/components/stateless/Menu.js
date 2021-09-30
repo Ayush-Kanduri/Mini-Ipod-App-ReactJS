@@ -102,7 +102,7 @@ const Menu = (props) => {
 			style={styles.menu}
 		>
 			<div className="ipod-title" style={styles.title}>
-				<p>Mini Ipod App</p>
+				<p style={{ borderRadiusTopLeft: "10%" }}>Mini Ipod App</p>
 			</div>
 			{RenderMenu}
 		</div>
@@ -116,6 +116,7 @@ const styles = {
 		justifyContent: "center",
 		alignItems: "center",
 		textShadow: "1px 2px 0px lightgray",
+		borderRadiusTopLeft: "10%",
 	},
 	text: {
 		marginLeft: "1rem",
@@ -123,6 +124,7 @@ const styles = {
 	},
 	menu: {
 		backgroundColor: "lightcyan",
+		borderRadiusTopLeft: "10%",
 	},
 };
 

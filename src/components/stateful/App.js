@@ -1,7 +1,8 @@
 import React from "react";
 import Ipod from "../stateless/Ipod";
 import ZingTouch from "zingtouch";
-//importing images from assets
+import Helmet from "react-helmet";
+// importing images from assets
 import wallpaper1 from "../../assets/images/wallpaper1.jpg";
 import wallpaper2 from "../../assets/images/wallpaper2.jpg";
 import wallpaper3 from "../../assets/images/wallpaper3.jpg";
@@ -11,8 +12,8 @@ import coverflow from "../../assets/images/coverflow.png";
 import games from "../../assets/images/games.jpeg";
 import allsongs from "../../assets/images/allsongs.gif";
 import artists from "../../assets/images/artists.jpg";
-import albums from "../../assets/images/albums.jpg";
-//importing songs and thumbnails
+import albums from "../../assets/images/albums.png";
+// importing songs and thumbnails
 import music1 from "../../assets/songs/stay.mp3";
 import song1Img from "../../assets/images/stay.png";
 import music2 from "../../assets/songs/deserve-you.mp3";
@@ -20,20 +21,20 @@ import song2Img from "../../assets/images/deserve-you.jpeg";
 import music3 from "../../assets/songs/yummy.mp3";
 import song3Img from "../../assets/images/yummy.png";
 
-//Stateful App Class Component to Render the App as a whole
+// Stateful App Class Component to Render the App as a whole
 class App extends React.Component {
 	//-------------------------------------------------------------------------------------------
-	//Constructor for initialization of State and Ref
+	// Constructor for initialization of State and Ref
 	constructor() {
 		super();
-		//State
+		// State
 		const song1 = new Audio(music1);
 		const song2 = new Audio(music2);
 		const song3 = new Audio(music3);
 		this.state = {
-			//State Managing the Menu
+			// State Managing the Menu
 			menu: {
-				//Menu Options along with their Sub-Menu Options
+				// Menu Options along with their Sub-Menu Options
 				options: [
 					{
 						music: ["all-songs", "artists", "albums"],
@@ -52,20 +53,20 @@ class App extends React.Component {
 						],
 					},
 				],
-				//Making the Menu Visible
+				// Making the Menu Visible
 				menuVisible: "no",
 				musicVisible: "no",
 				settingsVisible: "no",
-				//Menu Options Index for traversal in Options and Sub Options
+				// Menu Options Index for traversal in Options and Sub Options
 				optionsIndex: 0,
 				musicIndex: 0,
 				settingsIndex: 0,
-				//used for Main Page Rendering like songs,artists,albums
+				// used for Main Page Rendering like songs,artists,albums
 				pageRender: "no",
 			},
-			//State Managing the Screen Display
+			// State Managing the Screen Display
 			screen: {
-				//List of wallpapers, Pages Background to Render
+				// List of wallpapers, Pages in Background to Render
 				wallpaper: [
 					// wallpapers
 					wallpaper1,
@@ -84,16 +85,16 @@ class App extends React.Component {
 					// albums
 					albums,
 				],
-				//Wallpaper index for traversal in Wallpaper Array to access wallpaper
+				// Wallpaper index for traversal in Wallpaper Array to access wallpaper
 				wallpaperIndex: 0,
-				//Wallpaper index for traversal in Wallpaper Array for every element
+				// Wallpaper index for traversal in Wallpaper Array for every Screen
 				screenIndex: 0,
 			},
-			//State Managing the Mouse Click CSS Effect
+			// State Managing the Mouse Click CSS Effect
 			mouse: {
 				innerCircle: "",
 			},
-			//State Managing the songs
+			// State Managing the Songs
 			songsList: {
 				songs: [song1, song2, song3],
 				thumbnails: [song1Img, song2Img, song3Img],
@@ -101,21 +102,39 @@ class App extends React.Component {
 				name: ["Stay", "Deserve You", "Yummy"],
 				isPlaying: false,
 			},
+			// State Managing the Themes
+			theme: {
+				themeList: ["Classic", "Dark"],
+				themeIndex: 0,
+			},
+			// State Managing the Orientation
+			orientation: {
+				orientationList: ["vertical", "horizontal"],
+				orientationIndex: 0,
+			},
 		};
-		//Ref to access the Component
+		// Reference to access the Component
 		this.controllerRef = React.createRef();
 		this.progressRef = React.createRef();
 	}
 	//-------------------------------------------------------------------------------------------
-	//Functionality to choose the menu to display and handle the Menu Clicks
+	// Functionality to choose the menu to display and handle the Menu Clicks
 	isMenuVisible = (menu, screen) => {
-		//To go back to the previous Menu from the current Homepage Display
+		const { songsList } = this.state;
+		// To go back to the previous Menu from the current Display
 		if (menu.pageRender === "yes") {
 			menu.menuVisible = "yes";
 			screen.screenIndex = screen.wallpaperIndex;
 			menu.pageRender = "no";
+
+			songsList.songs.map((song) => {
+				song.pause();
+				song.currentTime = 0;
+				return [];
+			});
+			songsList.isPlaying = false;
 		}
-		//To open the Menu and visit different Menu Options
+		// To open the Menu and visit different Menu Options
 		else {
 			if (
 				menu.menuVisible === "yes" &&
@@ -139,11 +158,11 @@ class App extends React.Component {
 				menu.menuVisible = "yes";
 			}
 		}
-		this.setState({ menu, screen });
+		this.setState({ menu, screen, songsList });
 		return;
 	};
 	//-------------------------------------------------------------------------------------------
-	//Functionality to handle the Down Press CSS effect on Middle Button
+	// Functionality to handle the Down Press CSS effect on Middle Button
 	addClass = (classname, event) => {
 		if (classname === "inner-circle" && event === "down") {
 			const { mouse } = this.state;
@@ -152,7 +171,7 @@ class App extends React.Component {
 		}
 	};
 	//-------------------------------------------------------------------------------------------
-	//Functionality to handle the Up Press CSS effect on Middle Button
+	// Functionality to handle the Up Press CSS effect on Middle Button
 	removeClass = (classname, event) => {
 		if (classname === "inner-circle" && event === "down") {
 			const { mouse } = this.state;
@@ -161,9 +180,10 @@ class App extends React.Component {
 		}
 	};
 	//-------------------------------------------------------------------------------------------
-	//Functionality to handle the Click Operations in the App for the Displays
+	// Functionality to handle the Click Operations in the App for the Displays
 	tap = (menu, screen) => {
-		//To go to the Sub Menu of the Main Menu
+		const { songsList, theme, orientation } = this.state;
+		// To go to the Sub Menu of the Main Menu
 		if (
 			menu.menuVisible === "yes" &&
 			menu.musicVisible === "no" &&
@@ -183,7 +203,7 @@ class App extends React.Component {
 				menu.settingsVisible = "yes";
 			}
 		}
-		//To Open the Pages of Music Menu
+		// To Open the Pages of Music Menu
 		else if (
 			menu.menuVisible === "yes" &&
 			menu.musicVisible === "yes" &&
@@ -193,6 +213,8 @@ class App extends React.Component {
 				menu.pageRender = "yes";
 				menu.menuVisible = "no";
 				screen.screenIndex = 7;
+				songsList.isPlaying = true;
+				songsList.songs[songsList.songIndex].play();
 			} else if (menu.musicIndex === 1) {
 				menu.pageRender = "yes";
 				menu.menuVisible = "no";
@@ -203,7 +225,7 @@ class App extends React.Component {
 				screen.screenIndex = 9;
 			}
 		}
-		//To Open the Pages of Settings Menu
+		// To Open the Pages of Settings Menu
 		else if (
 			menu.menuVisible === "yes" &&
 			menu.musicVisible === "no" &&
@@ -217,27 +239,38 @@ class App extends React.Component {
 				}
 				screen.screenIndex = screen.wallpaperIndex;
 			}
-			//For Theme and Orientation
+			// For changing the Orientation
 			else if (menu.settingsIndex === 1) {
-				alert("Feature Will Be Added in the Next Version Release !! :)");
-			} else {
-				alert("Feature Will Be Added in the Next Version Release !! :)");
+				// alert("Feature Will Be Added in the Next Version Release !! :)");
+				if (orientation.orientationIndex === 0) {
+					orientation.orientationIndex = 1;
+				} else {
+					orientation.orientationIndex = 0;
+				}
+			}
+			// For changing the Theme
+			else {
+				if (theme.themeIndex === 0) {
+					theme.themeIndex = 1;
+				} else {
+					theme.themeIndex = 0;
+				}
 			}
 		} else {
 		}
-		this.setState({ menu, screen });
+		this.setState({ menu, screen, songsList, theme, orientation });
 		return;
 	};
 	//-------------------------------------------------------------------------------------------
-	//Functionality to handle the Rotation Operations in the App for the Options
+	// Functionality to handle the Rotation Operations in the App for the Options
 	rotate = (menu) => {
-		//Binds the rotate event to the active region
+		// Binds the rotate event to the active region
 		this.activeRegionOuter.bind(
 			this.containerElementOuter,
 			"rotate",
 			(event) => {
 				event.stopPropagation();
-				//Rotation in Main Menu
+				// Rotation in Main Menu
 				if (
 					menu.menuVisible === "yes" &&
 					menu.musicVisible === "no" &&
@@ -263,7 +296,7 @@ class App extends React.Component {
 					} else {
 					}
 				}
-				//Rotation in Music Menu
+				// Rotation in Music Menu
 				else if (
 					menu.menuVisible === "yes" &&
 					menu.musicVisible === "yes" &&
@@ -285,7 +318,7 @@ class App extends React.Component {
 					} else {
 					}
 				}
-				//Rotation in Settings Menu
+				// Rotation in Settings Menu
 				else if (
 					menu.menuVisible === "yes" &&
 					menu.musicVisible === "no" &&
@@ -313,76 +346,128 @@ class App extends React.Component {
 		);
 	};
 	//-------------------------------------------------------------------------------------------
-	//Gets called before the First Re-Render and uses the Reference to the controller
+	// Gets called before the First Re-Render and uses the Reference to the Controller
 	componentDidMount() {
 		this.containerElementOuter = this.controllerRef.current;
 		this.activeRegionOuter = new ZingTouch.Region(this.containerElementOuter);
 	}
 	//-------------------------------------------------------------------------------------------
-	//Gets called when we press the Play/Pause Button to play-pause the Song
+	// Gets called when we press the Play/Pause Button to Play-Pause the Song
 	play = (songsList) => {
-		const { songIndex } = songsList;
-		if (songsList.isPlaying) {
-			songsList.isPlaying = false;
-			songsList.songs[songIndex].pause();
+		if (
+			this.state.menu.pageRender === "yes" &&
+			this.state.screen.screenIndex === 7
+		) {
+			const { songIndex } = songsList;
+			if (songsList.isPlaying) {
+				songsList.isPlaying = false;
+				songsList.songs[songIndex].pause();
+			} else {
+				songsList.isPlaying = true;
+				songsList.songs[songIndex].play();
+			}
+			this.setState({ songsList });
 		} else {
-			songsList.isPlaying = true;
-			songsList.songs[songIndex].play();
 		}
-		this.setState({ songsList });
 	};
 	//-------------------------------------------------------------------------------------------
-	//Gets called when we press the Next Button for next song
+	// Gets called when we Press the Next Button for the Next Song
 	nextSong = (songsList) => {
-		songsList.songs.map((song) => {
-			song.pause();
-			song.currentTime = 0;
-			return [];
-		});
-		songsList.isPlaying = false;
-		songsList.songIndex += 1;
-		if (songsList.songIndex > songsList.songs.length - 1) {
-			songsList.songIndex = 0;
+		if (
+			this.state.menu.pageRender === "yes" &&
+			this.state.screen.screenIndex === 7
+		) {
+			songsList.songs.map((song) => {
+				song.pause();
+				song.currentTime = 0;
+				return [];
+			});
+			songsList.isPlaying = false;
+			songsList.songIndex += 1;
+			if (songsList.songIndex > songsList.songs.length - 1) {
+				songsList.songIndex = 0;
+			}
+			songsList.songs[songsList.songIndex].play();
+			songsList.isPlaying = true;
+			this.setState({ songsList });
+		} else {
 		}
-		songsList.songs[songsList.songIndex].play();
-		songsList.isPlaying = true;
-		this.setState({ songsList });
 	};
 	//-------------------------------------------------------------------------------------------
-	//Gets called when we press the Previous Button for previous song
+	// Gets called when we Press the Previous Button for the Previous Song
 	prevSong = (songsList) => {
-		songsList.songs.map((song) => {
-			song.pause();
-			song.currentTime = 0;
-			return [];
-		});
-		songsList.isPlaying = false;
-		songsList.songIndex -= 1;
-		if (songsList.songIndex < 0) {
-			songsList.songIndex = songsList.songs.length - 1;
+		if (
+			this.state.menu.pageRender === "yes" &&
+			this.state.screen.screenIndex === 7
+		) {
+			songsList.songs.map((song) => {
+				song.pause();
+				song.currentTime = 0;
+				return [];
+			});
+			songsList.isPlaying = false;
+			songsList.songIndex -= 1;
+			if (songsList.songIndex < 0) {
+				songsList.songIndex = songsList.songs.length - 1;
+			}
+			songsList.songs[songsList.songIndex].play();
+			songsList.isPlaying = true;
+			this.setState({ songsList });
+		} else {
 		}
-		songsList.songs[songsList.songIndex].play();
-		songsList.isPlaying = true;
-		this.setState({ songsList });
 	};
 	//-------------------------------------------------------------------------------------------
-	//Gets called to update the song progress bar
+	// Gets called to Update the Song Progress Bar
 	updateProgress = (event) => {
-		const { currentTime, duration } = event.srcElement;
-		const progressPercent = (currentTime / duration) * 100;
-		this.progressRef.current.style.width = progressPercent + "%";
+		if (
+			this.state.menu.pageRender === "yes" &&
+			this.state.screen.screenIndex === 7
+		) {
+			const { currentTime, duration } = event.srcElement;
+			const progressPercent = (currentTime / duration) * 100;
+			this.progressRef.current.style.width = progressPercent + "%";
+		} else {
+		}
 	};
 	//-------------------------------------------------------------------------------------------
-	//Renders the App Component
+	// Renders the App Component
 	render() {
-		const { menu, screen, mouse, songsList } = this.state;
+		const { menu, screen, mouse, songsList, theme, orientation } = this.state;
+		//------------------------------------------------------------------------------------------
+		// Change Orientation
+		const position = () => {
+			if (orientation.orientationIndex === 0) {
+				return "App";
+			} else {
+				return "App-rotate";
+			}
+		};
+		//------------------------------------------------------------------------------------------
+		// Changing the Application Body Theme
+		const styling = () => {
+			if (theme.themeIndex === 0) {
+				return "background-color: '';";
+			} else {
+				return "background-color: black;";
+			}
+		};
+		//------------------------------------------------------------------------------------------
 		return (
-			<div className="App">
+			<div
+				className={position()}
+				style={
+					orientation.orientationIndex === 0
+						? { transform: "rotate(0deg)" }
+						: { transform: "rotate(-90deg)" }
+				}
+			>
 				<Ipod
 					screen={screen}
 					menu={menu}
 					mouse={mouse}
 					songsList={songsList}
+					theme={theme}
+					orientation={orientation}
 					isMenuVisible={this.isMenuVisible}
 					addClass={this.addClass}
 					removeClass={this.removeClass}
@@ -395,8 +480,12 @@ class App extends React.Component {
 					controllerRef={this.controllerRef}
 					progressRef={this.progressRef}
 				/>
+				<Helmet>
+					<style>{`body { ${styling()} }`}</style>
+				</Helmet>
 			</div>
 		);
+		//------------------------------------------------------------------------------------------
 	}
 	//-------------------------------------------------------------------------------------------
 }

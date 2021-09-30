@@ -21,20 +21,35 @@ body {
 }
 
 /* --------------------------------Ipod Styling-------------------------------- */
+.App-rotate,
+.App {
+	transition: all 1s linear;
+}
 .ipod {
+	height: 580px;
+	width: 370px;
 	background: linear-gradient(90deg, #e3e4e5, #cacaca);
 	border-radius: 10%;
 	margin: auto;
 	margin-top: 40px;
-	height: 580px;
-	width: 370px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	-webkit-box-shadow: 1px 4px 15px 10px rgba(151, 151, 151, 0.72);
-	box-shadow: 1px 4px 15px 10px rgba(151, 151, 151, 0.72);
 }
+/* .ipod-rotate {
+	height: 563px;
+	width: 333px;
+
+	background: linear-gradient(90deg, #e3e4e5, #cacaca);
+	border-radius: 10%;
+	margin: auto;
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+} */
 
 /* --------------------------------Ipod Top Container Styling-------------------------------- */
 /* Top Container */
@@ -109,8 +124,8 @@ body {
 /* --------------------------------Ipod Bottom Container Styling-------------------------------- */
 /* Bottom Container */
 .ipod .bottom-container {
-	border-radius: 10%;
-	background: linear-gradient(90deg, #e3e4e5, #cacaca);
+	border-bottom-left-radius: 10%;
+	border-bottom-right-radius: 10%;
 	height: 50%;
 	width: 100%;
 	display: flex;
@@ -121,7 +136,6 @@ body {
 }
 /* Controller Container */
 .ipod .controller-container {
-	background: linear-gradient(90deg, #e3e4e5, #cacaca);
 	border-bottom-left-radius: 10%;
 	border-bottom-right-radius: 10%;
 	filter: brightness(100%);

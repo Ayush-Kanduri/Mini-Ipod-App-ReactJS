@@ -1,7 +1,9 @@
 import React from "react";
 
-//Functional Controller Component to handle the Click-Rotate operations in the Ipod
+// Functional Controller Component to handle the Click-Rotate operations in the Ipod
 const Controller = (props) => {
+	//------------------------------------------------------------------------------------------
+	// Unpacking the Props
 	const {
 		menu,
 		rotate,
@@ -16,11 +18,21 @@ const Controller = (props) => {
 		songsList,
 		nextSong,
 		prevSong,
+		theme,
 	} = props;
+
+	const styling = () => {
+		if (theme.themeIndex === 0) {
+			return { background: "linear-gradient(90deg, #e3e4e5,#cacaca)" };
+		} else {
+			return { backgroundColor: "black" };
+		}
+	};
 	return (
 		<div
 			className="controller-container"
 			id="controller-container"
+			style={styling()}
 			onClick={(e) => {
 				e.stopPropagation();
 				return;
