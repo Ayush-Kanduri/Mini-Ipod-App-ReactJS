@@ -3,23 +3,9 @@ import Ipod from "../stateless/Ipod";
 import ZingTouch from "zingtouch";
 import Helmet from "react-helmet";
 // importing images from assets
-import wallpaper1 from "../../assets/images/wallpaper1.jpg";
-import wallpaper2 from "../../assets/images/wallpaper2.jpg";
-import wallpaper3 from "../../assets/images/wallpaper3.jpg";
-import wallpaper4 from "../../assets/images/wallpaper4.jpg";
-import wallpaper5 from "../../assets/images/wallpaper5.jpg";
-import coverflow from "../../assets/images/coverflow.png";
-import games from "../../assets/images/games.jpeg";
-import allsongs from "../../assets/images/allsongs.gif";
-import artists from "../../assets/images/artists.jpg";
-import albums from "../../assets/images/albums.png";
+import images from "../../assets/images/images";
 // importing songs and thumbnails
-import music1 from "../../assets/songs/stay.mp3";
-import song1Img from "../../assets/images/stay.png";
-import music2 from "../../assets/songs/deserve-you.mp3";
-import song2Img from "../../assets/images/deserve-you.jpeg";
-import music3 from "../../assets/songs/yummy.mp3";
-import song3Img from "../../assets/images/yummy.png";
+import songs from "../../assets/songs/songs";
 
 // Stateful App Class Component to Render the App as a whole
 class App extends React.Component {
@@ -28,9 +14,9 @@ class App extends React.Component {
 	constructor() {
 		super();
 		// State
-		const song1 = new Audio(music1);
-		const song2 = new Audio(music2);
-		const song3 = new Audio(music3);
+		const song1 = new Audio(songs.music1);
+		const song2 = new Audio(songs.music2);
+		const song3 = new Audio(songs.music3);
 		this.state = {
 			// State Managing the Menu
 			menu: {
@@ -69,21 +55,21 @@ class App extends React.Component {
 				// List of wallpapers, Pages in Background to Render
 				wallpaper: [
 					// wallpapers
-					wallpaper1,
-					wallpaper2,
-					wallpaper3,
-					wallpaper4,
-					wallpaper5,
+					images.wallpaper1,
+					images.wallpaper2,
+					images.wallpaper3,
+					images.wallpaper4,
+					images.wallpaper5,
 					// coverflow
-					coverflow,
+					images.coverflow,
 					// games
-					games,
+					images.games,
 					// all songs
-					allsongs,
+					images.allsongs,
 					// artists
-					artists,
+					images.artists,
 					// albums
-					albums,
+					images.albums,
 				],
 				// Wallpaper index for traversal in Wallpaper Array to access wallpaper
 				wallpaperIndex: 0,
@@ -97,7 +83,7 @@ class App extends React.Component {
 			// State Managing the Songs
 			songsList: {
 				songs: [song1, song2, song3],
-				thumbnails: [song1Img, song2Img, song3Img],
+				thumbnails: [images.song1Img, images.song2Img, images.song3Img],
 				songIndex: 0,
 				name: ["Stay", "Deserve You", "Yummy"],
 				isPlaying: false,
@@ -106,11 +92,6 @@ class App extends React.Component {
 			theme: {
 				themeList: ["Classic", "Dark"],
 				themeIndex: 0,
-			},
-			// State Managing the Orientation
-			orientation: {
-				orientationList: ["vertical", "horizontal"],
-				orientationIndex: 0,
 			},
 		};
 		// Reference to access the Component
@@ -182,7 +163,7 @@ class App extends React.Component {
 	//-------------------------------------------------------------------------------------------
 	// Functionality to handle the Click Operations in the App for the Displays
 	tap = (menu, screen) => {
-		const { songsList, theme, orientation } = this.state;
+		const { songsList, theme } = this.state;
 		// To go to the Sub Menu of the Main Menu
 		if (
 			menu.menuVisible === "yes" &&
@@ -241,12 +222,7 @@ class App extends React.Component {
 			}
 			// For changing the Orientation
 			else if (menu.settingsIndex === 1) {
-				// alert("Feature Will Be Added in the Next Version Release !! :)");
-				if (orientation.orientationIndex === 0) {
-					orientation.orientationIndex = 1;
-				} else {
-					orientation.orientationIndex = 0;
-				}
+				alert("Feature Will Be Added in the Next Version Release !! :)");
 			}
 			// For changing the Theme
 			else {
@@ -258,7 +234,7 @@ class App extends React.Component {
 			}
 		} else {
 		}
-		this.setState({ menu, screen, songsList, theme, orientation });
+		this.setState({ menu, screen, songsList, theme });
 		return;
 	};
 	//-------------------------------------------------------------------------------------------
@@ -432,42 +408,27 @@ class App extends React.Component {
 	//-------------------------------------------------------------------------------------------
 	// Renders the App Component
 	render() {
-		const { menu, screen, mouse, songsList, theme, orientation } = this.state;
 		//------------------------------------------------------------------------------------------
-		// Change Orientation
-		const position = () => {
-			if (orientation.orientationIndex === 0) {
-				return "App";
-			} else {
-				return "App-rotate";
-			}
-		};
+		//Unpacking the State
+		const { menu, screen, mouse, songsList, theme } = this.state;
 		//------------------------------------------------------------------------------------------
 		// Changing the Application Body Theme
 		const styling = () => {
 			if (theme.themeIndex === 0) {
-				return "background-color: '';";
+				return "background-color: ''; transition: all 2s linear;";
 			} else {
-				return "background-color: black;";
+				return "background-color: black; transition: all 2s linear;";
 			}
 		};
 		//------------------------------------------------------------------------------------------
 		return (
-			<div
-				className={position()}
-				style={
-					orientation.orientationIndex === 0
-						? { transform: "rotate(0deg)" }
-						: { transform: "rotate(-90deg)" }
-				}
-			>
+			<div className="App">
 				<Ipod
 					screen={screen}
 					menu={menu}
 					mouse={mouse}
 					songsList={songsList}
 					theme={theme}
-					orientation={orientation}
 					isMenuVisible={this.isMenuVisible}
 					addClass={this.addClass}
 					removeClass={this.removeClass}

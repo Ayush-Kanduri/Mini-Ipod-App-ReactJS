@@ -1,7 +1,6 @@
 import React from "react";
 import Display from "./Display";
 import Controller from "./Controller";
-import $ from "jquery";
 
 // Ipod Functional Component for the Ipod Structure with the incoming Props
 const Ipod = (props) => {
@@ -24,20 +23,31 @@ const Ipod = (props) => {
 		updateProgress,
 		progressRef,
 		theme,
-		orientation,
 	} = props;
 	//------------------------------------------------------------------------------------------
-	// Change Orientation
-	if (orientation.orientationIndex === 1) {
-		$(".ipod").css("height", "563px");
-		$(".ipod").css("width", "333px");
-	} else {
-		$(".ipod").css("height", "580px");
-		$(".ipod").css("width", "370px");
-	}
-	//------------------------------------------------------------------------------------------
-	// Changing the Ipod Theme Color
+	// Changing the Ipod Bottom Container Theme Color
 	const themeBottomContainer = () => {
+		if (theme.themeIndex === 0) {
+			return {
+				background: "linear-gradient(90deg, #e3e4e5,#cacaca)",
+				transition: "all 2s linear",
+			};
+		} else {
+			return { backgroundColor: "black", transition: "all 2s linear" };
+		}
+	};
+	//------------------------------------------------------------------------------------------
+	// Changing the Ipod Top Container Theme Color
+	const themeTopContainer = () => {
+		if (theme.themeIndex === 0) {
+			return { background: "linear-gradient(90deg, #e3e4e5,#cacaca)" };
+		} else {
+			return { backgroundColor: "black" };
+		}
+	};
+	//------------------------------------------------------------------------------------------
+	// Changing the Ipod Display Container Theme Color
+	const themeDisplayContainer = () => {
 		if (theme.themeIndex === 0) {
 			return { background: "linear-gradient(90deg, #e3e4e5,#cacaca)" };
 		} else {
@@ -48,9 +58,15 @@ const Ipod = (props) => {
 	// Changing the Ipod Theme Shadow
 	const themeIpod = () => {
 		if (theme.themeIndex === 0) {
-			return { boxShadow: "1px 4px 15px 10px rgba(151, 151, 151, 0.72)" };
+			return {
+				boxShadow: "1px 4px 15px 10px rgba(151, 151, 151, 0.72)",
+				background: "linear-gradient(90deg, #e3e4e5,#cacaca)",
+			};
 		} else {
-			return { boxShadow: "0px 1px 15px 8px rgba(151, 151, 151, 0.72)" };
+			return {
+				boxShadow: "0px 1px 15px 13px rgba(151, 151, 151, 0.72)",
+				backgroundColor: "black",
+			};
 		}
 	};
 	//------------------------------------------------------------------------------------------
@@ -58,17 +74,19 @@ const Ipod = (props) => {
 		<div className="ipod" style={themeIpod()}>
 			<div
 				className="top-container"
+				style={themeTopContainer()}
 				onMouseUp={(e) => {
 					e.stopPropagation();
 					removeClass("inner-circle", "down");
 					return;
 				}}
 			>
-				<div className="display-container">
+				<div className="display-container" style={themeDisplayContainer()}>
 					<Display
 						menu={menu}
 						screen={screen}
 						songsList={songsList}
+						theme={theme}
 						updateProgress={updateProgress}
 						progressRef={progressRef}
 					/>

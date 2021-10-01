@@ -1,13 +1,18 @@
 import React from "react";
 
-//Functional Allsongs Component to Render the Song Player which plays the Song in the Ipod
+// Functional All-songs Component to Render the Song Player which plays the Song in the Ipod
 const Allsongs = (props) => {
+	//------------------------------------------------------------------------------------------
+	// Unpacking the Props
 	const { songsList, updateProgress, progressRef } = props;
 	const { songs, thumbnails, songIndex, name } = songsList;
 	const audio = songs[songIndex];
+	//------------------------------------------------------------------------------------------
+	// To update the Progress Bar
 	audio.addEventListener("timeupdate", (event) => {
 		updateProgress(event);
 	});
+	//------------------------------------------------------------------------------------------
 	return (
 		<div className="music-player" style={styles.player}>
 			<div className="song-info" style={styles.songInfo}>
@@ -25,6 +30,7 @@ const Allsongs = (props) => {
 			</div>
 		</div>
 	);
+	//------------------------------------------------------------------------------------------
 };
 
 const styles = {

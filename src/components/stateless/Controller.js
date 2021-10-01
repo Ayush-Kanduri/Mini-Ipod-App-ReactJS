@@ -20,7 +20,8 @@ const Controller = (props) => {
 		prevSong,
 		theme,
 	} = props;
-
+	//------------------------------------------------------------------------------------------
+	// Changing the Controller Container Theme
 	const styling = () => {
 		if (theme.themeIndex === 0) {
 			return { background: "linear-gradient(90deg, #e3e4e5,#cacaca)" };
@@ -28,6 +29,7 @@ const Controller = (props) => {
 			return { backgroundColor: "black" };
 		}
 	};
+	//------------------------------------------------------------------------------------------
 	return (
 		<div
 			className="controller-container"
@@ -144,6 +146,7 @@ const Controller = (props) => {
 			</div>
 		</div>
 	);
+	//------------------------------------------------------------------------------------------
 };
 
 const styles = {
