@@ -67,8 +67,16 @@
 #### Implemented using the SCRUM planned Sprint in Agile JIRA.
 ![MI Sprint in SCRUM - Agile JIRA](https://user-images.githubusercontent.com/76626529/135663692-f75eccc1-61f0-44d1-8b4c-d92e6a058772.png)
 
-#
-> I hope you like the project. Thanks for reading :)
+## Follow me on:
+> [Dev Community](https://dev.to/ayushkanduri)
+
+> [Twitter](https://twitter.com/ayush_codes)
+ 
+> [LinkedIn](https://www.linkedin.com/in/ayushkanduri/)
+
+> [YouTube](https://www.youtube.com/channel/UC6c1ajC_2jF7wQp7Y13t2bg)
+
+I hope you like the project. Thanks for reading :)
 #
 #
 
