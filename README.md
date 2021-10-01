@@ -1,5 +1,7 @@
-# Getting Started with Create React App
+# Mini iPod App - ReactJS
+https://miro.medium.com/max/1400/1*CeuWv9fCjD1uTiTuKytnBQ.png
 
+## Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
