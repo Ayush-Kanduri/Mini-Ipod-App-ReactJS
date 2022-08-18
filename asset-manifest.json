@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/Mini-Ipod-App-ReactJS/static/css/main.9f661c47.chunk.css",
+    "main.js": "/Mini-Ipod-App-ReactJS/static/js/main.e486d993.chunk.js",
+    "main.js.map": "/Mini-Ipod-App-ReactJS/static/js/main.e486d993.chunk.js.map",
+    "runtime-main.js": "/Mini-Ipod-App-ReactJS/static/js/runtime-main.a95b5575.js",
+    "runtime-main.js.map": "/Mini-Ipod-App-ReactJS/static/js/runtime-main.a95b5575.js.map",
+    "static/js/2.a6bba47e.chunk.js": "/Mini-Ipod-App-ReactJS/static/js/2.a6bba47e.chunk.js",
+    "static/js/2.a6bba47e.chunk.js.map": "/Mini-Ipod-App-ReactJS/static/js/2.a6bba47e.chunk.js.map",
+    "index.html": "/Mini-Ipod-App-ReactJS/index.html",
+    "static/css/main.9f661c47.chunk.css.map": "/Mini-Ipod-App-ReactJS/static/css/main.9f661c47.chunk.css.map",
+    "static/js/2.a6bba47e.chunk.js.LICENSE.txt": "/Mini-Ipod-App-ReactJS/static/js/2.a6bba47e.chunk.js.LICENSE.txt",
+    "static/media/albums.b09054c9.png": "/Mini-Ipod-App-ReactJS/static/media/albums.b09054c9.png",
+    "static/media/allsongs.0c6197b3.gif": "/Mini-Ipod-App-ReactJS/static/media/allsongs.0c6197b3.gif",
+    "static/media/artists.7f5e149b.jpg": "/Mini-Ipod-App-ReactJS/static/media/artists.7f5e149b.jpg",
+    "static/media/coverflow.eb883fee.png": "/Mini-Ipod-App-ReactJS/static/media/coverflow.eb883fee.png",
+    "static/media/deserve-you.55454a9b.jpeg": "/Mini-Ipod-App-ReactJS/static/media/deserve-you.55454a9b.jpeg",
+    "static/media/deserve-you.d62eb2ea.mp3": "/Mini-Ipod-App-ReactJS/static/media/deserve-you.d62eb2ea.mp3",
+    "static/media/games.9b211f3c.jpeg": "/Mini-Ipod-App-ReactJS/static/media/games.9b211f3c.jpeg",
+    "static/media/stay.05b4658e.mp3": "/Mini-Ipod-App-ReactJS/static/media/stay.05b4658e.mp3",
+    "static/media/stay.f49ace90.png": "/Mini-Ipod-App-ReactJS/static/media/stay.f49ace90.png",
+    "static/media/wallpaper1.6f652af8.jpg": "/Mini-Ipod-App-ReactJS/static/media/wallpaper1.6f652af8.jpg",
+    "static/media/wallpaper2.5a5cba14.jpg": "/Mini-Ipod-App-ReactJS/static/media/wallpaper2.5a5cba14.jpg",
+    "static/media/wallpaper3.17feda07.jpg": "/Mini-Ipod-App-ReactJS/static/media/wallpaper3.17feda07.jpg",
+    "static/media/wallpaper4.aaad9425.jpg": "/Mini-Ipod-App-ReactJS/static/media/wallpaper4.aaad9425.jpg",
+    "static/media/wallpaper5.af9e2725.jpg": "/Mini-Ipod-App-ReactJS/static/media/wallpaper5.af9e2725.jpg",
+    "static/media/yummy.6e9ade2a.png": "/Mini-Ipod-App-ReactJS/static/media/yummy.6e9ade2a.png",
+    "static/media/yummy.8283f1f7.mp3": "/Mini-Ipod-App-ReactJS/static/media/yummy.8283f1f7.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a95b5575.js",
+    "static/js/2.a6bba47e.chunk.js",
+    "static/css/main.9f661c47.chunk.css",
+    "static/js/main.e486d993.chunk.js"
+  ]
+}
