@@ -1,5 +1,5 @@
 # 𝐌𝐢𝐧𝐢 𝐈𝐩𝐨𝐝 𝐀𝐩𝐩 - 𝐑𝐞𝐚𝐜𝐭𝐉𝐒 🚀
-
+ 
 <br/>
 <p align="center">
 <img src="https://user-images.githubusercontent.com/76626529/135662491-261ae6f1-d8db-4a64-8cf3-ddb03969ebb8.PNG">
