@@ -41,6 +41,7 @@ This is a Mini Ipod App Project which is built using React, CSS, Javascript. It 
 
 -  Fork the Project in your Repository.
 -  Clone the Forked Repository in your Local System.
+-  Run 'npm install'.
 -  Run 'npm start'.
 -  Enjoy :)
 
